@@ -191,25 +191,10 @@ def sam_vgg(data):
     #     conv_5_out)
 
 # alpha process
-#     Caps1 = CapsConv(num_outputs=8, cap_dim=8)
-#     part_land_outs = Caps1(conv_5_out, kernel_size=3, stride=1)
-#     # batchS * 28 * 28 * (8 * 8)
-#     part_land_outs = squash(part_land_outs)
-
     part_land_outs = alpha_infer(conv_5_out, num_outputs=8, cap_dim=8,
                                  kernel_size=3, stride=1)
-
-    # Caps2 = CapsConv(num_outputs=2, cap_dim=32)
-    # part_body_land_outs = Caps2(conv_5_out, kernel_size=3, stride=1)
-    # # batchS * 28*28 * (16*2)
-    # part_body_land_outs = squash(part_body_land_outs)
     part_body_land_outs = alpha_infer(conv_5_out, num_outputs=2, cap_dim=32,
                                       kernel_size=3, stride=1)
-
-    # Caps3 = CapsConv(num_outputs=1, cap_dim=64)
-    # full_body_land_outs = Caps3(conv_5_out, kernel_size=3, stride=1)
-    # # batchS * 28*28 * (32*1)
-    # full_body_land_outs = squash(full_body_land_outs)
     full_body_land_outs = alpha_infer(conv_5_out, num_outputs=1, cap_dim=64,
                                       kernel_size=3, stride=1)
 
